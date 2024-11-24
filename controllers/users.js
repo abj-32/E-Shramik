@@ -20,7 +20,7 @@ async function handleUserSignUp(req,res){
                 password
             });
         
-            return res.redirect('/login');
+            return res.redirect('/user/login');
         }
     }
     catch(error){
@@ -35,8 +35,8 @@ async function handleUserLogin(req,res){
     const {email,password}=req.body;
 
     try{
-        await User.matchPassword(email,password);
-        return res.redirect('/');
+        const token=await User.matchPasswordandGenerateToken(email,password);
+        return res.cookie("token",token).redirect('/');
     }
     catch(error){
         return res.render("login",{

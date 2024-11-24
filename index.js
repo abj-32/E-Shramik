@@ -1,6 +1,8 @@
 const path= require("path");
 const express=require("express");
 const connectToMonogoDB=require('./connect');
+const cookieParser=require('cookie-parser');
+const {checkForAuthentication}=require('./middlewares/authentication')
 
 
 
@@ -9,7 +11,7 @@ const PORT=8000;
 
 
 //===================MONGODB DATABASE CONNECTION===================
-connectToMonogoDB("mongodb://localhost:27017/eshramik").then( ()=>{
+connectToMonogoDB("mongodb+srv://connect2abj:MWj61zryxnc6zQm5@e-shramik.kwu6o.mongodb.net/?retryWrites=true&w=majority&appName=E-Shramik").then( ()=>{
     console.log("Connected to MongoDB");
 });
 //=================================================================
@@ -17,6 +19,8 @@ connectToMonogoDB("mongodb://localhost:27017/eshramik").then( ()=>{
 
 //==============================middlewares===========================
 app.use(express.urlencoded({extended:false}));
+app.use(cookieParser());
+app.use(checkForAuthentication("token")); 
 
 
 //====================================================================
@@ -35,7 +39,9 @@ app.set("views", path.resolve("./views"));
 
 
 app.get("/", (req,res)=>{
-    res.render("home")
+    res.render("home",{
+        user:req.user
+    })
 })
 app.use('/user',userRouter);
 

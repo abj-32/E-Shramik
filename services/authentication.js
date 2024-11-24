@@ -7,6 +7,7 @@ const secret="abj@72";
 function createTokenForUser(user){
     const payload={
         _id:user._id,
+        name:user.name,
         email:user.email,
         role:user.role
     };
@@ -23,7 +24,7 @@ function validateToken(token){
      }
 
      try{
-        return jwt.verify(token,verify);
+        return jwt.verify(token,secret);
      }
      catch(error){
         console.log("Token verification failed: ",error.message);
