@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>Shramik Signup</title>
+    <style>
+        .card-registration .select-input.form-control[readonly]:not([disabled]) {
+font-size: 1rem;
+line-height: 2.15;
+padding-left: .75em;
+padding-right: .75em;
+}
+.card-registration .select-arrow {
+top: 13px;
+}
+    </style>
+</head>
+<body style="background-color: #8fc4b7;">
+    <section class="h-100 bg-dark">
+      <% if (locals.error) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Holy comrade!</strong> <%= locals.error %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% } %>
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+              <div class="card card-registration my-4">
+                <div class="row g-0">
+                    <div class="col-xl-6 d-none d-xl-block">
+                        <img src="https://images.unsplash.com/photo-1709086566151-9a88641579b0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGxhYm9yZXJ8ZW58MHx8MHx8fDA%3D"
+                          alt="Sample photo" class="img-fluid"
+                          style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height: 100%; object-fit: cover;" />
+                    </div>                    
+                  <div class="col-xl-6">
+                    <form action="/worker/wSignup" method="post">
+                    <div class="card-body p-md-5 text-black">
+                      <h3 class="mb-5 text-uppercase">Shramik registration form</h3>
+      
+                      <!-- <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div data-mdb-input-init class="form-outline">
+                            <input type="text" id="form3Example1m1" class="form-control form-control-lg" />
+                            <label class="form-label" for="form3Example1m1">Mother's name</label>
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div data-mdb-input-init class="form-outline">
+                            <input type="text" id="form3Example1n1" class="form-control form-control-lg" />
+                            <label class="form-label" for="form3Example1n1">Father's name</label>
+                          </div>
+                        </div>
+                      </div> -->
+      
+                      <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" for="form3Example8">FullName</label>
+                        <input type="text" id="name" name="name" class="form-control form-control-lg" />
+                      </div>
+      
+                      <!-- <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+      
+                        <h6 class="mb-0 me-4">Gender: </h6>
+      
+                        <div class="form-check form-check-inline mb-0 me-4">
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                            value="option1" />
+                          <label class="form-check-label" for="femaleGender">Female</label>
+                        </div>
+      
+                        <div class="form-check form-check-inline mb-0 me-4">
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                            value="option2" />
+                          <label class="form-check-label" for="maleGender">Male</label>
+                        </div>
+      
+                        <div class="form-check form-check-inline mb-0">
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
+                            value="option3" />
+                          <label class="form-check-label" for="otherGender">Other</label>
+                        </div>
+      
+                      </div> -->
+
+                      <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" for="form3Example9">Phone Number</label>
+                        <input type="text" id="phoneno" name="phoneno" class="form-control form-control-lg" placeholder="enter 10 digit no" />
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+      
+                          <label class="form-label" for="trade">Trade / Area of Service</label>
+                          <select id="trade" name="trade" class="form-select" required>
+                              <option value="" disabled selected>Choose your trade</option>
+                              <option value="Electrician">Electrician</option>
+                              <option value="Plumber">Plumber</option>
+                              <option value="Carpenter">Carpenter</option>
+                              <option value="Mason/Bricklayer">Mason/Bricklayer</option>
+                              <option value="Labrourer">Labourer</option>
+                              <option value="Tiler">Tiler</option>
+                          </select>
+                        </div>
+                        <!-- <div class="col-md-6 mb-4">
+      
+                          <select data-mdb-select-init>
+                            <option value="1">City</option>
+                            <option value="2">Option 1</option>
+                            <option value="3">Option 2</option>
+                            <option value="4">Option 3</option>
+                          </select>
+      
+                        </div> -->
+                      </div>
+      
+                      <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" for="form3Example90">City of Work</label>
+                        <input type="text" id="city_of_work" name="city_of_work" class="form-control form-control-lg" />
+                      </div>
+      
+                      <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" for="form3Example99">Years of Experience</label>
+                        <input type="text" id="experience" name="experience" class="form-control form-control-lg" />
+                      </div>
+      
+                      <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" for="form3Example97">Please Create a password</label>
+                        <input type="password" id="wpassword"  name="wpassword" class="form-control form-control-lg" />
+                      </div>
+      
+                      <div class="d-flex justify-content-end pt-3">
+                        <button  type="reset" data-mdb-button-init data-mdb-ripple-init class="btn btn-light btn-lg">Reset all</button>
+                        <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-lg ms-2">Submit form</button>
+                      </div>
+      
+                    </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <%- include('./partials/scripts.ejs') %>
+</body>
+</html>

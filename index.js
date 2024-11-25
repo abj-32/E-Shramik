@@ -30,6 +30,9 @@ app.use(checkForAuthentication("token"));
 
 //========================routes==========
 const userRouter=require("./routes/user");
+const workerRouter=require("./routes/worker")
+
+//========================================
 
 
 
@@ -44,6 +47,7 @@ app.get("/", (req,res)=>{
     })
 })
 app.use('/user',userRouter);
+app.use('/worker',workerRouter);
 
 
 

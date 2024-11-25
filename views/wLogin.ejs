@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>Shramik Signup</title>
+    <style>
+        .card-registration .select-input.form-control[readonly]:not([disabled]) {
+            font-size: 1rem;
+            line-height: 2.15;
+            padding-left: .75em;
+            padding-right: .75em;
+        }
+        .card-registration .select-arrow {
+            top: 13px;
+        }
+
+        .card img {
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1rem 0 0 1rem;
+        }
+
+        .card {
+            height: 100%; /* Ensures the card takes full height */
+        }
+
+        .vh-100 {
+            min-height: 100vh; /* Ensures the section covers the full viewport height */
+        }
+    </style>
+</head>
+<body style="background-color: #585f5d;">
+    <section class="vh-100 bg-dark">
+        <% if (locals.error) { %>
+          <div class="container alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Holy comrade!</strong> You should check in on Email OR password.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% } %>
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                    <div class="card" style="border-radius: 1rem;">
+                        <div class="row g-0">
+                            <!-- Image Column -->
+                            <div class="col-md-6 col-lg-5 d-none d-md-block">
+                                <img src="https://images.pexels.com/photos/3689289/pexels-photo-3689289.jpeg?auto=compress&cs=tinysrgb&w=600"
+                                    alt="login form" class="img-fluid" />
+                            </div>
+                            <!-- Form Column -->
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+                                    <form action="/worker/wLogin" method="post">
+                                        <div class="d-flex align-items-center mb-3 pb-1">
+                                            <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                            <span class="h1 fw-bold mb-0">E-SHRAMIK</span>
+                                        </div>
+                                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Login as a Shramik</h5>
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <label class="form-label" for="form2Example17">Phone No</label>
+                                            <input type="text" id="phoneno" name="phoneno" class="form-control form-control-lg" />
+                                        </div>
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <label class="form-label" for="form2Example27">Password</label>
+                                            <input type="password" id="wpassword" name="wpassword" class="form-control form-control-lg" />
+                                        </div>
+                                        <div class="pt-1 mb-4">
+                                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
+                                        </div>
+                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="/worker/wSignup"
+                                                style="color: #393f81;">Register here</a></p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%- include('./partials/scripts.ejs') %>
+</body>
+</html>
