@@ -41,8 +41,8 @@ async function handleWorkerLogin(req,res){
     const {phoneno,wpassword}=req.body;
 
     try{
-        const token=await worker.matchWorkerPassword(phoneno, wpassword);
-        res.redirect("/")
+        const workerToken=await worker.matchWorkerPasswordandGenerateToken(phoneno, wpassword);
+        return res.cookie("workerToken",workerToken).redirect('/worker/shramikHome');
     }
     catch(error){
         res.render('/wLogin',{

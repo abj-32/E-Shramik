@@ -1,5 +1,6 @@
 const mongoose =require('mongoose');
 const {createHmac,randomBytes}=require("crypto");
+const {createTokenforWorker}=require('../services/workerAuth')
 
 
 const workerSchema=new mongoose.Schema({
@@ -50,7 +51,7 @@ workerSchema.pre("save", function(next){
 })
 
 
-workerSchema.static("matchWorkerPassword", async function(phoneno,wpassword){
+workerSchema.static("matchWorkerPasswordandGenerateToken", async function(phoneno,wpassword){
 
     const worker= await this.findOne( {phoneno});
     
@@ -67,7 +68,8 @@ workerSchema.static("matchWorkerPassword", async function(phoneno,wpassword){
         throw new Error("Incorrect password or username")
     }
 
-    return true;
+    const workerToken=createTokenforWorker(worker);
+    return workerToken;
 })
 
 workerSchema.static("doesPhonenoExist", async function(phoneno){
