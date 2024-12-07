@@ -8,6 +8,33 @@
     <%- include('./partials/navbar.ejs') %>
 
     <%= JSON.stringify(user) %>
+
+
+    <div class="container mt-3">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <% shramik.forEach(sh => { %>
+          <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"> <%= sh.name %></h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"> <%= sh.trade %> </li>
+              <li class="list-group-item"> <%= sh.city_of_work %></li>
+              <li class="list-group-item"> <%= sh.experience %></li>
+            </ul>
+            <!-- <div class="card-body">
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div> -->
+          </div>
+
+        <% }) %>
+
+      </div>
+    </div>
     <%- include('./partials/scripts.ejs') %>
   </body>
 </html>

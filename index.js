@@ -2,6 +2,7 @@ const path= require("path");
 const express=require("express");
 const connectToMonogoDB=require('./connect');
 const cookieParser=require('cookie-parser');
+const worker=require('./models/workers')
 const {checkForAuthentication}=require('./middlewares/authentication')
 
 
@@ -41,9 +42,11 @@ app.set("view engine","ejs");
 app.set("views", path.resolve("./views"));
 
 
-app.get("/", (req,res)=>{
+app.get("/", async(req,res)=>{
+    const allworkers=await worker.find({});
     res.render("home",{
-        user:req.user
+        user:req.user,
+        shramik:allworkers
     })
 })
 app.use('/user',userRouter);
