@@ -1,12 +1,16 @@
 const express=require('express');
 const workerRouter=express.Router();
+const workerSchema=require('../models/workers')
 const {handleWorkerSignup,handleWorkerLogin} =require('../controllers/worker')
 const {checkWorkerAuth}=require('../middlewares/workerAuth')
 
 
-workerRouter.get('/shramikHome',checkWorkerAuth("workerToken"),(req,res)=>{
+workerRouter.get('/shramikHome',checkWorkerAuth("workerToken"),async(req,res)=>{
+    const workerId=req.worker.id;
+    //console.log(workerId);
+    const workerProfile=await workerSchema.findById(workerId);
     res.render("shramikHome",{
-        worker:req.worker
+        worker:workerProfile
     });
 });
 

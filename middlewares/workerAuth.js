@@ -6,7 +6,7 @@ function checkWorkerAuth(cookieName){
         const workerTokenCookieValue=req.cookies[cookieName];
 
         if(!workerTokenCookieValue){
-            return next();
+            return res.redirect("/worker/wLogin");
         }
 
         try{
