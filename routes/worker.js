@@ -1,7 +1,7 @@
 const express=require('express');
 const workerRouter=express.Router();
 const workerSchema=require('../models/workers')
-const {handleWorkerSignup,handleWorkerLogin} =require('../controllers/worker')
+const {handleWorkerSignup,handleWorkerLogin,handleWorkerInfoRendering} =require('../controllers/worker')
 const {checkWorkerAuth}=require('../middlewares/workerAuth')
 
 
@@ -21,6 +21,9 @@ workerRouter.get('/wSignup',(req,res)=>{
 workerRouter.get('/wLogin',(req,res)=>{
     res.render("wLogin");
 });
+
+workerRouter.get('/:id',handleWorkerInfoRendering);
+
 
 workerRouter.post('/wSignup',handleWorkerSignup);
 workerRouter.post('/wLogin',handleWorkerLogin);

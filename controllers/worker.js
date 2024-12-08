@@ -52,7 +52,15 @@ async function handleWorkerLogin(req,res){
     
 }
 
+async function handleWorkerInfoRendering(req,res){
+    const workerInfo=await worker.findById(req.params.id);
+
+    res.render("shramikInfo",{
+        shramikInfo:workerInfo
+    });
+}
+
 
 module.exports={
-    handleWorkerLogin,handleWorkerSignup
+    handleWorkerLogin,handleWorkerSignup,handleWorkerInfoRendering
 }

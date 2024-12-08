@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>Shramik Info</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #817e7e;">
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-12 col-xl-4">
+              <div class="card" style="border-radius: 15px;">
+                <div class="card-body text-center">
+                  <div class="mt-3 mb-4">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQgVrX7-j0mn1o_FOVQH_leiId8OA2dcZYaQ&s"
+                      class=" border rounded-circle img-fluid" style="width: 150px;" />
+                  </div>
+                  <h3 class="mb-2"><%= shramikInfo.name %></h3>
+                  <h5 class="text-muted mb-4"><%= shramikInfo.trade %> <span class="mx-2">|</span> <%= shramikInfo.city_of_work %></h5>
+                  <!-- Copy Button -->
+                  <button 
+                    type="button" 
+                    class="btn btn-primary btn-rounded btn-lg copy-btn"
+                    data-clipboard-text="<%= shramikInfo.phoneno %>"
+                    data-bs-toggle="tooltip" 
+                    title="Click to copy phone number">
+                    <ion-icon name="call-sharp"></ion-icon>&nbsp;&nbsp;<%= shramikInfo.phoneno %>
+                  </button>
+                  <div class="d-flex justify-content-between text-center mt-5 mb-2">
+                    <div>
+                      <p class="mb-2 h5"><%= shramikInfo.experience %>+</p>
+                      <p class="text-muted mb-0">Experience (Years)</p>
+                    </div>
+                    <div class="px-3">
+                      <p class="mb-2 h5">8 hrs</p>
+                      <p class="text-muted mb-0">Work Shift</p>
+                    </div>
+                    <div>
+                      <p class="mb-2 h5">17</p>
+                      <p class="text-muted mb-0">Completed Tasks</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- Include Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- Include Clipboard.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Initialize Clipboard.js
+      const clipboard = new ClipboardJS('.copy-btn');
+      
+      // Handle successful copy
+      clipboard.on('success', function(e) {
+        const button = e.trigger;
+        
+        // Get Bootstrap tooltip instance
+        const tooltip = bootstrap.Tooltip.getInstance(button);
+        tooltip.setContent({ '.tooltip-inner': 'Copied!' });
+        
+        // Show "Copied!" message
+        tooltip.show();
+        
+        // Reset tooltip after 2 seconds
+        setTimeout(() => {
+          tooltip.setContent({ '.tooltip-inner': 'Click to copy phone number' });
+          tooltip.hide();
+        }, 2000);
+        
+        e.clearSelection();
+      });
+
+      clipboard.on('error', function(e) {
+        alert('Failed to copy. Please try again.');
+      });
+
+      // Initialize Bootstrap tooltips
+      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    </script>
+
+    <%- include('./partials/scripts.ejs') %>
+</body>
+</html>

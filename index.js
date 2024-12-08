@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path= require("path");
 const express=require("express");
 const connectToMonogoDB=require('./connect');
@@ -8,12 +9,12 @@ const {checkForAuthentication}=require('./middlewares/authentication')
 
 
 const app=express();
-const PORT=8000;
+const PORT= process.env.PORT || 8000;
 
 
 //===================MONGODB DATABASE CONNECTION===================
-connectToMonogoDB("mongodb+srv://connect2abj:MWj61zryxnc6zQm5@e-shramik.kwu6o.mongodb.net/?retryWrites=true&w=majority&appName=E-Shramik").then( ()=>{
-    console.log("Connected to MongoDB");
+connectToMonogoDB(process.env.MONGO_URL).then( ()=>{
+    console.log("Connected to MongoDB");//"mongodb+srv://connect2abj:MWj61zryxnc6zQm5@e-shramik.kwu6o.mongodb.net/?retryWrites=true&w=majority&appName=E-Shramik"
 });
 //=================================================================
 

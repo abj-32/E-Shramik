@@ -10,6 +10,8 @@
         border-radius: 8px; /* Rounded corners */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Modern shadow effect */
         transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+        width: 18rem; /* Fixed width for the cards */
+        margin: 10px 0; /* Margin between rows */
       }
 
       .card:hover {
@@ -24,34 +26,26 @@
       ion-icon {
         color: blue;
       }
+      body {
+    background-color: #bfc1c4; /* Light gray background */
+  }
     </style>
   </head>
   <body>
     <%- include('./partials/navbar.ejs') %>
 
     <!-- <%= JSON.stringify(user) %> -->
-
     <div class="container mt-3">
       <div class="row justify-content-center">
         <% shramik.forEach(sh => { %>
-          <div class="col-md-4 d-flex align-items-stretch">
-            <div class="card" style="width: 18rem;">
-              <!-- <img src="..." class="card-img-top" alt="..."> -->
+          <div class="col-md-4 d-flex justify-content-center">
+            <div class="card">
+              <h4 class="card-header"><%= sh.name %></h4>
               <div class="card-body">
-                <h5 class="card-title"> <%= sh.name %></h5>
-                <p class="card-text"><%= sh.trade %></p>
+                <h6 class="card-title"><%= sh.trade %></h6>
+                <p class="card-text"><ion-icon name="location"></ion-icon><%= sh.city_of_work %></p>
+                <a href="/worker/<%= sh._id %>" class="btn btn-primary">Explore</a>
               </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <ion-icon name="call-sharp"></ion-icon><%= sh.phoneno %>
-                </li>
-                <li class="list-group-item">
-                  <ion-icon name="location"></ion-icon><%= sh.city_of_work %>
-                </li>
-                <li class="list-group-item">
-                  <ion-icon name="construct-outline"></ion-icon>since <%= sh.experience %> Years
-                </li>
-              </ul>
             </div>
           </div>
         <% }) %>
