@@ -3,6 +3,7 @@ const workerRouter=express.Router();
 const workerSchema=require('../models/workers')
 const {handleWorkerSignup,handleWorkerLogin,handleWorkerInfoRendering} =require('../controllers/worker')
 const {checkWorkerAuth}=require('../middlewares/workerAuth')
+const {signupAuthentication}=require('../middlewares/authentication')
 
 
 workerRouter.get('/shramikHome',checkWorkerAuth("workerToken"),async(req,res)=>{
@@ -22,7 +23,7 @@ workerRouter.get('/wLogin',(req,res)=>{
     res.render("wLogin");
 });
 
-workerRouter.get('/:id',handleWorkerInfoRendering);
+workerRouter.get('/:id',signupAuthentication("token"),handleWorkerInfoRendering);
 
 
 workerRouter.post('/wSignup',handleWorkerSignup);
