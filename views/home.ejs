@@ -6,6 +6,7 @@
     <style>
       /* Custom styling for the cards */
       .card {
+        background-color: #e5e6e7;
         border: 1px solid #7a7070; /* Border for the outer card only */
         border-radius: 8px; /* Rounded corners */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Modern shadow effect */
@@ -23,11 +24,11 @@
         margin-right: 5px; /* Space between icon and text */
       }
 
-      ion-icon {
-        color: blue;
-      }
+      /* ion-icon {
+        color: black;
+      } */
       body {
-    background-color: #bfc1c4; /* Light gray background */
+    background-color: #5f6063; /* Light gray background */
   }
     </style>
   </head>
@@ -42,9 +43,9 @@
             <div class="card">
               <h4 class="card-header"><%= sh.name %></h4>
               <div class="card-body">
-                <h6 class="card-title"><%= sh.trade %></h6>
-                <p class="card-text"><ion-icon name="location"></ion-icon><%= sh.city_of_work %></p>
-                <a href="/worker/<%= sh._id %>" class="btn btn-primary">Explore</a>
+                <h6 class="card-title"><ion-icon name="settings-sharp"></ion-icon>&nbsp;<%= sh.trade %></h6>
+                <p class="card-text"><ion-icon name="location"></ion-icon>&nbsp;<%= sh.city_of_work %></p>
+                <a href="/worker/<%= sh._id %>" class="btn btn-primary">Contact..</a>
               </div>
             </div>
           </div>

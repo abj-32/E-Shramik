@@ -1,5 +1,6 @@
 require('dotenv').config();
 const path= require("path");
+const favicon = require('serve-favicon');
 const express=require("express");
 const connectToMonogoDB=require('./connect');
 const cookieParser=require('cookie-parser');
@@ -11,7 +12,6 @@ const {checkForAuthentication}=require('./middlewares/authentication')
 const app=express();
 const PORT= process.env.PORT || 8000;
 
-
 //===================MONGODB DATABASE CONNECTION===================
 connectToMonogoDB(process.env.MONGO_URL).then( ()=>{
     console.log("Connected to MongoDB");//"mongodb+srv://connect2abj:MWj61zryxnc6zQm5@e-shramik.kwu6o.mongodb.net/?retryWrites=true&w=majority&appName=E-Shramik"
@@ -20,9 +20,13 @@ connectToMonogoDB(process.env.MONGO_URL).then( ()=>{
 
 
 //==============================middlewares===========================
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public/images', 'favicon.png')));
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 app.use(checkForAuthentication("token")); 
+
+
 
 
 //====================================================================
