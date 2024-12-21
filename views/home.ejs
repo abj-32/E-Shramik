@@ -11,7 +11,7 @@
         border-radius: 8px; /* Rounded corners */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Modern shadow effect */
         transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
-        width: 18rem; /* Fixed width for the cards */
+        width: 20rem; /* Fixed width for the cards */
         margin: 10px 0; /* Margin between rows */
       }
 
@@ -24,18 +24,67 @@
         margin-right: 5px; /* Space between icon and text */
       }
 
-      /* ion-icon {
-        color: black;
-      } */
+      /* Styling for carousel images */
+      .carousel-inner img {
+        height: 500px; /* Fixed height */
+        object-fit: cover; /* Ensure images fit frame without distortion */
+      }
+
       body {
-    background-color: #5f6063; /* Light gray background */
-  }
+        background-color: #5f6063; /* Light gray background */
+      }
     </style>
   </head>
   <body>
     <%- include('./partials/navbar.ejs') %>
 
-    <!-- <%= JSON.stringify(user) %> -->
+    <!-- Carousel -->
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://cdn.pixabay.com/photo/2013/07/25/11/58/bricks-166919_1280.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <div style="background-color: rgba(241, 241, 232, 0.432);" class="rounded-pill">
+              <h5 style="color: black;">Welcome to <b>E-Shramik</b></h5>
+            <h3 style="color: black;">Solution to all your odd chores just a call away.</h3>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://cdn.pixabay.com/photo/2021/02/02/02/51/worker-5972518_1280.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <div style="background-color: rgba(241, 241, 232, 0.432);" class="rounded-pill">
+              <h5 style="color: black;">Welcome to <b>E-Shramik</b></h5>
+            <h3 style="color: black;">Solution to all your odd chores just a call away.</h3>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://cdn.pixabay.com/photo/2024/05/26/03/53/glass-cleaner-8788036_960_720.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <div style="background-color: rgba(241, 241, 232, 0.432);" class="rounded-pill">
+              <h5 style="color: black;">Welcome to <b>E-Shramik</b></h5>
+            <h3 style="color: black;">Solution to all your odd chores just a call away.</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- Worker Cards -->
     <div class="container mt-3">
       <div class="row justify-content-center">
         <% shramik.forEach(sh => { %>
